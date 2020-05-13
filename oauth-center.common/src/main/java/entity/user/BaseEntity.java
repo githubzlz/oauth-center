@@ -8,6 +8,7 @@ import java.util.Date;
  */
 public class BaseEntity {
 
+    private String two;
     /**
      * 创建人
      */
