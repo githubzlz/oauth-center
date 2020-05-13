@@ -7,7 +7,7 @@ import java.util.Date;
  * @version 1.0 CreateTime:2019/10/21 8:46
  */
 public class BaseEntity {
-
+    private String one;
     /**
      * 创建人
      */
