@@ -1,15 +1,16 @@
 package entity.user;
 
+import lombok.Data;
+
 import java.util.Date;
 
 /**
  * @author zhulinzhong
  * @version 1.0 CreateTime:2019/10/21 8:46
  */
+@Data
 public class BaseEntity {
-    private String one;
 
-    private String two;
     /**
      * 创建人
      */

@@ -1,12 +1,16 @@
 package entity.user;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
  * 角色对应权限
  * @author  zhulinzhong
  */
+@Data
 public class TbRolePermission implements Serializable {
+    private static final long serialVersionUID = -6087005144617445198L;
     private Long id;
 
     /**
@@ -19,29 +23,4 @@ public class TbRolePermission implements Serializable {
      */
     private Long permissionId;
 
-    private static final long serialVersionUID = 1L;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
-    }
-
-    public Long getPermissionId() {
-        return permissionId;
-    }
-
-    public void setPermissionId(Long permissionId) {
-        this.permissionId = permissionId;
-    }
 }

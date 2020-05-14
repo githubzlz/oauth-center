@@ -1,34 +1,25 @@
 package entity.token;
 
+import lombok.Data;
+
+import java.io.Serializable;
+
 /**
  * @author zhulinzhong
  * @version 1.0 CreateTime:2019/10/24 10:47
  */
-public class Token {
+@Data
+public class Token implements Serializable {
 
+    private static final long serialVersionUID = 3795349702952403673L;
     /**
      * token的值
      */
-    private String token;
+    private String tokenValue;
 
     /**
      * token的过时时间
      */
     private String overTime;
 
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public String getOverTime() {
-        return overTime;
-    }
-
-    public void setOverTime(String overTime) {
-        overTime = overTime;
-    }
 }
