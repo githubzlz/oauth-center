@@ -39,26 +39,26 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        QueryWrapper<TbUser> query1 = new QueryWrapper();
+        QueryWrapper<TbUser> query1 = new QueryWrapper<>();
         query1.eq("username", username);
         TbUser user = tbUserMapper.selectOne(query1);
 
-        QueryWrapper query2 = new QueryWrapper();
+        QueryWrapper<TbUserRole> query2 = new QueryWrapper<>();
         query2.eq("user_id", user.getId());
         List<TbUserRole> tbUserRoles = tbUserRoleMapper.selectList(query2);
         List<Long> roles = new ArrayList<>();
         for (TbUserRole role : tbUserRoles) {
             roles.add(role.getRoleId());
         }
-        QueryWrapper query3 = new QueryWrapper();
-        query1.in("role_id", roles);
+        QueryWrapper<TbRolePermission> query3 = new QueryWrapper<>();
+        query3.in("role_id", roles);
         List<TbRolePermission> tbRolePermissions = tbRolePermissionMapper.selectList(query3);
 
         List<Long> permissions = new ArrayList<>();
         for (TbRolePermission tbRolePermission : tbRolePermissions) {
             permissions.add(tbRolePermission.getPermissionId());
         }
-        QueryWrapper query4 = new QueryWrapper();
+        QueryWrapper<TbPermission> query4 = new QueryWrapper<>();
         query4.in("id", permissions);
         List<TbPermission> tbPermissions = tbPermissionMapper.selectList(query4);
 
