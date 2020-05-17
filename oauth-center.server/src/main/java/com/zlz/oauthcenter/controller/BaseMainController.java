@@ -35,6 +35,7 @@ public class BaseMainController {
     public String getAccessConfirmation(Map<String, Object> map,
                                         HttpServletRequest request, Model model) throws Exception {
         @SuppressWarnings("unchecked")
+
         String scope = (String) (map.containsKey("scope") ?
                 map.get("scope") : request.getAttribute("scope"));
         String client = (String) (map.containsKey("client_id") ?
@@ -43,6 +44,7 @@ public class BaseMainController {
         scopeList.add(scope);
         map.put("scopeList", scopeList);
         model.addAttribute("scope",scope).addAttribute("client", client);
+        System.out.println("授权进行中，client："+client);
         return "authorization";
     }
     @RequestMapping({ "/oauth/approvale/error" })
@@ -58,5 +60,6 @@ public class BaseMainController {
         model.put("errorSummary", errorSummary);
         return "oauth_error";
     }
+
 
 }
