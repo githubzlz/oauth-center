@@ -34,8 +34,6 @@ public class BaseMainController {
     @RequestMapping({ "/oauth/approvale/confirm" })
     public String getAccessConfirmation(Map<String, Object> map,
                                         HttpServletRequest request, Model model) throws Exception {
-        @SuppressWarnings("unchecked")
-
         String scope = (String) (map.containsKey("scope") ?
                 map.get("scope") : request.getAttribute("scope"));
         String client = (String) (map.containsKey("client_id") ?

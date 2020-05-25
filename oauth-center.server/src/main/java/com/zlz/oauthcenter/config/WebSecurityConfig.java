@@ -32,7 +32,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin()
@@ -42,7 +41,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/auth/login").permitAll()
                 .anyRequest()
                 .authenticated()
-                .and().csrf().disable().cors();
+                .and().csrf().disable()
+                //允许iframe调用
+                .headers().frameOptions().disable();
     }
 
 //    @Override
