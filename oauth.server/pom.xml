@@ -3,24 +3,24 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>oauth-center</artifactId>
-        <groupId>com.zlz.oauthcenter</groupId>
-        <version>1.0.0-SNAPSHOT</version>
+        <artifactId>oauth</artifactId>
+        <groupId>com.zlz.oauth</groupId>
+        <version>1.0.0-RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <artifactId>oauth-center.server</artifactId>
+    <artifactId>oauth.server</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>com.zlz.oauthcenter</groupId>
-            <artifactId>oauth-center.client</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <groupId>com.zlz.oauth</groupId>
+            <artifactId>oauth.client</artifactId>
+            <version>1.0.0-RELEASE</version>
         </dependency>
         <dependency>
-            <groupId>com.zlz.oauthcenter</groupId>
-            <artifactId>oauth-center.common</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <groupId>com.zlz.oauth</groupId>
+            <artifactId>oauth.common</artifactId>
+            <version>1.0.0-RELEASE</version>
         </dependency>
 
 <!--        <dependency>-->
@@ -101,6 +101,18 @@
     </dependencies>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.10</version>
+                    <configuration>
+                        <skipTests>true</skipTests>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

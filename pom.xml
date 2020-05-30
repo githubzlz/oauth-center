@@ -4,11 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.zlz.oauthcenter</groupId>
-    <artifactId>oauth-center</artifactId>
+    <groupId>com.zlz.oauth</groupId>
+    <artifactId>oauth</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0-SNAPSHOT</version>
-    <description>demo</description>
+    <version>1.0.0-RELEASE</version>
+    <description>oauth</description>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -16,9 +17,9 @@
     </parent>
 
     <modules>
-        <module>oauth-center.server</module>
-        <module>oauth-center.common</module>
-        <module>oauth-center.client</module>
+        <module>oauth.common</module>
+        <module>oauth.client</module>
+        <module>oauth.server</module>
     </modules>
 
     <properties>
@@ -29,14 +30,6 @@
         <logback.version>1.2.3</logback.version>
         <java.version>1.8</java.version>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
 
     <dependencyManagement>
         <dependencies>
@@ -49,4 +42,22 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                    <exclude>**/.svn/*</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                    <exclude>**/.svn/*</exclude>
+                </excludes>
+            </resource>
+        </resources>
+    </build>
 </project>
