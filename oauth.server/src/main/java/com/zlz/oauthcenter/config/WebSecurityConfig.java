@@ -36,19 +36,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         //静态资源不拦截
-        web.ignoring().antMatchers("/static/**");
+        web.ignoring().antMatchers("/js/**","/css/**","/favicon-20190918085337900.ico");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin()
+        http.csrf().disable()
+                .formLogin()
                 .loginPage("/auth/login").loginProcessingUrl("/oauth/form")
                 .and()
                 .authorizeRequests()
                 .antMatchers("/auth/login").permitAll()
                 .anyRequest()
                 .authenticated()
-                .and().csrf().disable()
+                .and()
                 //允许iframe调用
                 .headers().frameOptions().disable();
     }

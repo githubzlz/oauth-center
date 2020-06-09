@@ -59,5 +59,4 @@ public class BaseMainController {
         return "oauth_error";
     }
 
-
 }

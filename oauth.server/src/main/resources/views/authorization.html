@@ -2,62 +2,49 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>确认授权页面</title>
+    <title>授权确认页面</title>
 </head>
 <link href="/favicon-20190918085337900.ico" rel="shortcut icon" type="image/x-icon">
-<style>
-    body{
-        background-color: #fffbff;
-    }
-    #div1{
-        text-align: center;
-        border: 1px gray solid;
-        width: 40%;
-        height: 200px;
-        margin: 10% auto 0px;
-        background-color: #fffbff;
-        box-shadow: 1px 1px 10px #888888;
-        border-radius: 20px;
-    }
-    #div2{
-        font-size: 20px;
-        color: #E9686B;
-        text-align: center;
-    }
-    #div3{
-        margin: 10px auto;
-    }
-    #confirmationForm{
-        display: inline-block;
-        margin-right: 20px;
-        bottom: 10px;
-    }
-    #denialForm{
-        display: inline-block;
-        margin-left: 20px;
-        bottom: 10px;
-    }
-    .tableReport-button {
-        cursor: pointer;
-        display: inline-block;
-        position: relative;
-        top: 15px;
-        left: 4%;
-        overflow: hidden;
-        text-align: center;
-        width: 30px;
-        background-color: #c07368;
-        border: solid 1px #ddd;
-        border-radius: 4px;
-        padding: 5px 15px;
-        font-size: 12px;
-        font-weight: normal;
-        line-height: 19px;
-        color: #fff;
-    }
-</style>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
 <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/js/vector.js"></script>
+<body>
+<div id="container">
+    <div id="output">
+        <div class="containerT">
+            <div id="div1">
+                <h1 style="color: #E9686B">授权确认</h1>
+                <div id="div2">
+                    <sapn>确认授权</sapn>
+                    <span style="color: #888888" th:text="${client}">客户端</span>
+                    <sapn>访问您的资源吗？</sapn>
+                </div>
+                <div id="div3">
+                    <form id="confirmationForm" name="confirmationForm" action="/oauth/authorize" method="post">
+                        <input name="user_oauth_approval" value="true" type="hidden"/>
+                        <input id="i1" class="tableReport-button" value="授权"/>
+                    </form>
+                    <form id="denialForm" name="denialForm" action="/oauth/authorize" method="post">
+                        <input name="user_oauth_approval" value="false" type="hidden"/>
+                        <input id="i2" class="tableReport-button" value="拒绝"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
 <script type="text/javascript">
+    $(function(){
+        Victor("container", "output");   //登陆背景函数
+        $("#entry_name").focus();
+        $(document).keydown(function(event){
+            if(event.keyCode==13){
+                $("#entry_btn").click();
+            }
+        });
+    });
     $(document).ready(function(){
         $("#i1").click(function () {
             $("#confirmationForm").submit();
@@ -67,24 +54,4 @@
         });
     });
 </script>
-<body>
-    <div id="div1">
-        <h1 style="color: #E9686B">授权确认</h1>
-        <div id="div2">
-            <sapn>确认授权</sapn>
-            <span style="color: #888888" th:text="${client}">客户端</span>
-            <sapn>访问您的资源吗？</sapn>
-        </div>
-        <div id="div3">
-            <form id="confirmationForm" name="confirmationForm" action="/oauth/authorize" method="post">
-                <input name="user_oauth_approval" value="true" type="hidden"/>
-                <input id="i1" class="tableReport-button" value="授权"/>
-            </form>
-            <form id="denialForm" name="denialForm" action="/oauth/authorize" method="post">
-                <input name="user_oauth_approval" value="false" type="hidden"/>
-                <input id="i2" class="tableReport-button" value="拒绝"/>
-            </form>
-        </div>
-    </div>
-</body>
 </html>
