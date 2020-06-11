@@ -28,7 +28,7 @@ public class BaseMainController {
         }else{
             model.addAttribute("error", "error");
         }
-        return "index";
+        return "login";
     }
 
     @RequestMapping({ "/oauth/approvale/confirm" })

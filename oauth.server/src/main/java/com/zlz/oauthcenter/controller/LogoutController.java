@@ -27,6 +27,7 @@ public class LogoutController {
     public String logOut(HttpServletRequest request){
         try {
             System.out.println("111");
+            String host = request.getHeader("Host");
             String authorization = request.getHeader("Authorization");
             if(authorization == null){
                 return "error";

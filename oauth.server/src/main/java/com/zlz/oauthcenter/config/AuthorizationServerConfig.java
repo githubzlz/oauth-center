@@ -53,8 +53,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security.allowFormAuthenticationForClients();
-        security.tokenKeyAccess("isAuthenticated()");
+        security.allowFormAuthenticationForClients()
+                .tokenKeyAccess("isAuthenticated()");
     }
 
     @Bean

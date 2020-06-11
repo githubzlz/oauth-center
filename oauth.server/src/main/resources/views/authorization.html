@@ -4,10 +4,10 @@
     <meta charset="UTF-8"/>
     <title>授权确认页面</title>
 </head>
-<link href="/favicon-20190918085337900.ico" rel="shortcut icon" type="image/x-icon">
-<link rel="stylesheet" type="text/css" href="/css/style.css">
-<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
-<script type="text/javascript" src="/js/vector.js"></script>
+<link href="/oauth-server/favicon-20190918085337900.ico" rel="shortcut icon" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="/oauth-server/css/style.css">
+<script type="text/javascript" src="/oauth-server/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/oauth-server/js/vector.js"></script>
 <body>
 <div id="container">
     <div id="output">
@@ -20,11 +20,11 @@
                     <sapn>访问您的资源吗？</sapn>
                 </div>
                 <div id="div3">
-                    <form id="confirmationForm" name="confirmationForm" action="/oauth/authorize" method="post">
+                    <form id="confirmationForm" name="confirmationForm" action="/oauth-server/oauth/authorize" method="post">
                         <input name="user_oauth_approval" value="true" type="hidden"/>
                         <input id="i1" class="tableReport-button" value="授权"/>
                     </form>
-                    <form id="denialForm" name="denialForm" action="/oauth/authorize" method="post">
+                    <form id="denialForm" name="denialForm" action="/oauth-server/oauth/authorize" method="post">
                         <input name="user_oauth_approval" value="false" type="hidden"/>
                         <input id="i2" class="tableReport-button" value="拒绝"/>
                     </form>
