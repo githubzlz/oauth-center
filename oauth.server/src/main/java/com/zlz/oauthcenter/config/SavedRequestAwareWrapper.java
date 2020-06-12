@@ -1,19 +1,3 @@
-/*
- * Copyright 2004, 2005, 2006 Acegi Technology Pty Limited
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.zlz.oauthcenter.config;
 
 import org.apache.commons.logging.Log;
@@ -28,19 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- * Provides request parameters, headers and cookies from either an original request or a
- * saved request.
- *
- * <p>
- * Note that not all request parameters in the original request are emulated by this
- * wrapper. Nevertheless, the important data from the original request is emulated and
- * this should prove adequate for most purposes (in particular standard HTTP GET and POST
- * operations).
- *
- * <p>
- * Added into a request by
- * {@link org.springframework.security.web.savedrequest.RequestCacheAwareFilter}.
- *
+ * 请求缓存的处理工具，非public，所以从jar包中复制到重写的同一package路径下
  * @author Andrey Grebnev
  * @author Ben Alex
  * @author Luke Taylor

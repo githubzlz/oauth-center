@@ -18,7 +18,7 @@
 	<div id="output">
 		<div class="containerT">
 			<h1>用户登录</h1>
-			<form name="loginForm" method="post" action="https://www.zlztsb.com:80/oauth-server/oauth/form">
+			<form name="loginForm" method="post" th:action= "${formAction}">
 				<label>
 					<input type="text" name="username" placeholder="用户名"/>
 				</label>

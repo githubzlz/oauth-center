@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
+ * 缓存的请求
  * @author zhulinzhong
  * @version 1.0 CreateTime:2020-06-11 14:21
  * @description

@@ -1,5 +1,6 @@
 package com.zlz.oauthcenter.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,9 @@ import java.util.Map;
 @SessionAttributes({ "authorizationRequest" })
 public class BaseMainController {
 
+    @Value("${gateway.server.url}")
+    private String gatewayServerUrl;
+
     @GetMapping("/auth/login")
     public String loginPage(Model model, HttpServletRequest request){
         if(request.getQueryString() == null){
@@ -28,6 +32,8 @@ public class BaseMainController {
         }else{
             model.addAttribute("error", "error");
         }
+        String formAction = gatewayServerUrl.concat("oauth-server/oauth/form");
+        model.addAttribute("formAction",formAction);
         return "login";
     }
 

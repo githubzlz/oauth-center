@@ -2,8 +2,12 @@ package com.zlz.oauthcenter.config;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import com.zlz.oauthcenter.util.ConfigurationUtil;
+import com.zlz.oauthcenter.util.SpringContextUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.security.web.PortResolver;
 import org.springframework.security.web.savedrequest.DefaultSavedRequest;
 import org.springframework.security.web.savedrequest.SavedCookie;
@@ -11,12 +15,19 @@ import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.security.web.util.UrlUtils;
 import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
+import org.thymeleaf.spring5.context.SpringContextUtils;
 
+import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 /**
+ * 重写请求缓存（可优化）
+ * 当一个请求被拦截并重定向到登陆界面时，该请求会被缓存，登陆成功时重新跳转回该请求
+ * gateway代理登陆时，无法获取到真实的地址，所以利用修改缓存的方法实现登陆成功后跳转回请求gateway的地址
+ * 问题描述：A请求gateway代理的oauth时，gateway获取oauth真实地址并请求，此时oauth发现该请求未被认证，缓存该请求，
+ * 并且重定向到登陆界面，此时缓存的地址是gateway请求的地址，并不是A请求gateway代理的地址。
  * @author zhulinzhong
  * @version 1.0 CreateTime:2020-06-11 14:39
  * @description
@@ -24,7 +35,6 @@ import java.util.*;
 public class MyDefaultSavedRequest implements SavedRequest {
 // ~ Static fields/initializers
     // =====================================================================================
-
     protected static final Log logger = LogFactory.getLog(DefaultSavedRequest.class);
 
     private static final String HEADER_IF_NONE_MATCH = "If-None-Match";
@@ -57,9 +67,11 @@ public class MyDefaultSavedRequest implements SavedRequest {
         Assert.notNull(request, "Request required");
         Assert.notNull(portResolver, "PortResolver required");
 
+        //获取configurationUtil
+        ConfigurationUtil configurationUtil = (ConfigurationUtil) SpringContextUtil.getBean("configurationUtil");
+        
         // Cookies
         addCookies(request.getCookies());
-
         // Headers
         Enumeration<String> names = request.getHeaderNames();
 
@@ -88,15 +100,18 @@ public class MyDefaultSavedRequest implements SavedRequest {
         this.pathInfo = request.getPathInfo();
         this.queryString = request.getQueryString();
         this.requestURI = request.getRequestURI();
-        if(portResolver.getServerPort(request) == 8081){
-            this.serverPort = 80;
+
+        //缓存时将对我的请求,设置为对gateway的请求
+        if(portResolver.getServerPort(request) == Integer.valueOf(configurationUtil.getMyPort())){
+            this.serverPort = configurationUtil.getGatewayPort();
         }else {
             this.serverPort = portResolver.getServerPort(request);
         }
-        String def1 = "http://www.zlztsb.com:8081/oauth-server/oauth/authorize";
+        //仅修改客户端请求权限时的路由地址
+        String def1 = "http://" + configurationUtil.getMyHost() + ":" + configurationUtil.getMyPort() + "/oauth-server/oauth/authorize";
         if(def1.equals(request.getRequestURL().toString())){
             this.scheme = "https";
-            this.requestURL = "https://www.zlztsb.com:80/oauth-server/oauth/authorize";
+            this.requestURL = configurationUtil.getGatewayUrl()+"oauth-server/oauth/authorize";
         }else {
             this.requestURL = request.getRequestURL().toString();
             this.scheme = request.getScheme();

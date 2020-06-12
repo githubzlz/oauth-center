@@ -1,7 +1,9 @@
 package com.zlz.oauthcenter.config;
 
 import com.zlz.oauthcenter.service.UserDetailsServiceImpl;
+import com.zlz.oauthcenter.util.ConfigurationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -19,6 +21,28 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Value("${gateway.server.url}")
+    private String gatewayUrl;
+
+    @Value("${eureka.instance.hostname}")
+    private String myHost;
+
+    @Value("${server.port}")
+    private String myPort;
+
+    @Value("${gateway.server.port}")
+    private Integer gatewayPort;
+
+    @Bean(name = "configurationUtil")
+    public ConfigurationUtil getConfigurationUtil(){
+        ConfigurationUtil configurationUtil = new ConfigurationUtil();
+        configurationUtil.setGatewayPort(gatewayPort);
+        configurationUtil.setMyHost(myHost);
+        configurationUtil.setMyPort(myPort);
+        configurationUtil.setGatewayUrl(gatewayUrl);
+        return configurationUtil;
+    }
 
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
@@ -43,7 +67,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .formLogin()
-                .loginPage("https://www.zlztsb.com:80/oauth-server/auth/login")
+                //设置登陆地址为gateway代理的地址
+                .loginPage( gatewayUrl + "oauth-server/auth/login")
                 .loginProcessingUrl("/oauth/form")
                 .and()
                 .requestCache().requestCache(new MyRequestCache())
