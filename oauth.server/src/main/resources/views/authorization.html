@@ -5,29 +5,42 @@
     <title>授权确认页面</title>
 </head>
 <link href="/oauth-server/favicon-20190918085337900.ico" rel="shortcut icon" type="image/x-icon">
-<link rel="stylesheet" type="text/css" href="/oauth-server/css/style.css">
+<link rel="stylesheet" type="text/css" href="/oauth-server/css/style2.css">
 <script type="text/javascript" src="/oauth-server/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="/oauth-server/js/vector.js"></script>
 <body>
 <div id="container">
     <div id="output">
         <div class="containerT">
-            <div id="div1">
-                <h1 style="color: #E9686B">授权确认</h1>
-                <div id="div2">
+            <div id="div1" style="width: 600px; height: 360px; border-radius: 20px; border: 2px solid #E9686B">
+                <h1 style="color: #E9686B; font-size: 25px; margin-bottom: 10px; margin-top: 10px">授权确认</h1>
+                <div id="div2" style="margin-bottom: 30px; font-size: 18px">
                     <sapn>确认授权</sapn>
-                    <span style="color: #888888" th:text="${client}">客户端</span>
+                    <span style="color: #888888; font-size: 15px" th:text="${client}">客户端</span>
                     <sapn>访问您的资源吗？</sapn>
                 </div>
+                <div style="text-align: left; margin: 0 30px 30px 30px; color: #E9686B; background-color: rgba(99, 99, 99, 0.1); border-radius: 10px; padding: 20px 10px;">
+                    <div style="margin-bottom: 20px;font-size: 15px;font-weight:700 ">
+                        <input type="checkbox" checked="checked" disabled/>用户名，邮箱 等 其他基础信息(必选)
+                    </div>
+                    <div style="font-size: 15px;font-weight:700">
+                        <input type="checkbox" checked="checked" disabled/>账户名 等 其他账户信息(必选)
+                    </div>
+                </div>
                 <div id="div3">
-                    <form id="confirmationForm" name="confirmationForm" action="/oauth-server/oauth/authorize" method="post">
-                        <input name="user_oauth_approval" value="true" type="hidden"/>
-                        <input id="i1" class="tableReport-button" value="授权"/>
-                    </form>
-                    <form id="denialForm" name="denialForm" action="/oauth-server/oauth/authorize" method="post">
-                        <input name="user_oauth_approval" value="false" type="hidden"/>
-                        <input id="i2" class="tableReport-button" value="拒绝"/>
-                    </form>
+                    <div style="display: inline-block; margin-right: 40px">
+                        <form id="confirmationForm" name="confirmationForm" action="/oauth-server/oauth/authorize" method="post">
+                            <input name="user_oauth_approval" value="true" type="hidden"/>
+                            <button id="i1" class="tableReport-button" style="cursor: pointer; color: #E9686B; width: 120px">授权</button>
+                        </form>
+                    </div>
+                    <div style="display: inline-block">
+                        <form id="denialForm" name="denialForm" action="/oauth-server/oauth/authorize" method="post">
+                            <input name="user_oauth_approval" value="false" type="hidden"/>
+                            <button id="i2" class="tableReport-button" style="cursor: pointer; color: #E9686B; width: 120px">拒绝</button>
+                        </form>
+                    </div>
+
                 </div>
             </div>
         </div>
