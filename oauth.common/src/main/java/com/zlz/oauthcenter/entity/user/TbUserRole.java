@@ -1,4 +1,4 @@
-package entity.user;
+package com.zlz.oauthcenter.entity.user;
 
 import lombok.Data;
 

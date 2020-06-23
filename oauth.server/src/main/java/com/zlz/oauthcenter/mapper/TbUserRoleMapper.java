@@ -1,7 +1,7 @@
 package com.zlz.oauthcenter.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import entity.user.TbUserRole;
+import com.zlz.oauthcenter.entity.user.TbUserRole;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

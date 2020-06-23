@@ -1,4 +1,4 @@
-package com.zlz.oauthcenter.config;
+package com.zlz.oauthcenter.config.cache;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
@@ -6,8 +6,6 @@ import com.zlz.oauthcenter.util.ConfigurationUtil;
 import com.zlz.oauthcenter.util.SpringContextUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.security.web.PortResolver;
 import org.springframework.security.web.savedrequest.DefaultSavedRequest;
 import org.springframework.security.web.savedrequest.SavedCookie;
@@ -15,9 +13,7 @@ import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.security.web.util.UrlUtils;
 import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
-import org.thymeleaf.spring5.context.SpringContextUtils;
 
-import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;

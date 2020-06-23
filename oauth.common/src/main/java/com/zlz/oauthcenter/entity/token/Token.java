@@ -1,4 +1,4 @@
-package entity.token;
+package com.zlz.oauthcenter.entity.token;
 
 import lombok.Data;
 

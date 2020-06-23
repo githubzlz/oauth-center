@@ -1,5 +1,6 @@
 package com.zlz.oauthcenter.config;
 
+import com.zlz.oauthcenter.config.cache.MyRequestCache;
 import com.zlz.oauthcenter.service.UserDetailsServiceImpl;
 import com.zlz.oauthcenter.util.ConfigurationUtil;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.zlz.oauthcenter.config;
+package com.zlz.oauthcenter.config.cache;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

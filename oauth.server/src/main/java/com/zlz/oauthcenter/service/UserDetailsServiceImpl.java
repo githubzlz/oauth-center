@@ -1,18 +1,18 @@
 package com.zlz.oauthcenter.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.zlz.oauthcenter.entity.token.UserVo;
+import com.zlz.oauthcenter.entity.user.TbPermission;
+import com.zlz.oauthcenter.entity.user.TbRolePermission;
+import com.zlz.oauthcenter.entity.user.TbUser;
+import com.zlz.oauthcenter.entity.user.TbUserRole;
 import com.zlz.oauthcenter.mapper.TbPermissionMapper;
 import com.zlz.oauthcenter.mapper.TbRolePermissionMapper;
 import com.zlz.oauthcenter.mapper.TbUserMapper;
 import com.zlz.oauthcenter.mapper.TbUserRoleMapper;
-import entity.user.TbPermission;
-import entity.user.TbRolePermission;
-import entity.user.TbUser;
-import entity.user.TbUserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -68,6 +68,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(tbPermission.getEname());
             grantedAuthorities.add(grantedAuthority);
         }
-        return new User(user.getUsername(), user.getPassword(), grantedAuthorities);
+        return new UserVo(user.getUsername(), user.getPassword(), grantedAuthorities, user.getId());
     }
 }
