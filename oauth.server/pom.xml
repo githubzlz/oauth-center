@@ -5,7 +5,7 @@
     <parent>
         <artifactId>oauth</artifactId>
         <groupId>com.zlz.oauth</groupId>
-        <version>1.1.0-RELEASE</version>
+        <version>1.1.0.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <artifactId>oauth.server</artifactId>
@@ -15,12 +15,12 @@
         <dependency>
             <groupId>com.zlz.oauth</groupId>
             <artifactId>oauth.client</artifactId>
-            <version>1.1.0-RELEASE</version>
+            <version>1.1.0.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>com.zlz.oauth</groupId>
             <artifactId>oauth.common</artifactId>
-            <version>1.1.0-RELEASE</version>
+            <version>1.1.0.RELEASE</version>
         </dependency>
 
 <!--        <dependency>-->
@@ -49,6 +49,10 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-oauth2</artifactId>
+        </dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -92,12 +96,6 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.zlz.oauth</groupId>
-            <artifactId>oauth.common</artifactId>
-            <version>1.1.0-RELEASE</version>
-            <scope>compile</scope>
         </dependency>
         <!-- logback end -->
     </dependencies>

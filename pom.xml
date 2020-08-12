@@ -7,7 +7,7 @@
     <groupId>com.zlz.oauth</groupId>
     <artifactId>oauth</artifactId>
     <packaging>pom</packaging>
-    <version>1.1.0-RELEASE</version>
+    <version>1.1.0.RELEASE</version>
     <description>oauth</description>
 
     <parent>
@@ -21,13 +21,6 @@
         <module>oauth.client</module>
         <module>oauth.server</module>
     </modules>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-oauth2</artifactId>
-        </dependency>
-    </dependencies>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
