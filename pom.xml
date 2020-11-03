@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.zlz.oauth</groupId>
-    <artifactId>oauth</artifactId>
+    <artifactId>oauth-center</artifactId>
     <packaging>pom</packaging>
     <version>1.1.0.RELEASE</version>
     <description>oauth</description>
